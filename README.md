@@ -11,6 +11,9 @@ executors:
   docker-awscli:
     docker:
       - image: horidaisuke/docker-awscli:latest
+    shell: /bin/bash -leo pipefail
+    environment:
+      - BASH_ENV: /etc/profile
 ```
 
 ## Tags
