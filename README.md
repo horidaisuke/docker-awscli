@@ -14,6 +14,22 @@ executors:
     shell: /bin/bash -leo pipefail
     environment:
       - BASH_ENV: /etc/profile
+
+# Use orbs command directly in docker-awscli executor
+orbs:
+  aws-ecr: circleci/aws-ecr@6.12.2
+jobs:
+  docker-push-example:
+    executor:
+      name: docker-awscli
+    steps:
+      - run:
+          command: |
+            echo 'export AWS_ECR_ACCOUNT_URL="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"' >> $BASH_ENV
+            echo 'export AWS_REGION="${AWS_DEFAULT_REGION}"' >> $BASH_ENV
+      - aws-ecr/ecr-login
+      - aws-ecr/push-image:
+          repo: example
 ```
 
 ## Tags
