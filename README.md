@@ -1,4 +1,4 @@
-# Docker-awscli
+# [Departed] Docker-awscli
 
 Docker image with aws cli installed for use as circleci executor
 
